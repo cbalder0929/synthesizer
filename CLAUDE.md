@@ -30,7 +30,7 @@ curl -sS -X POST http://127.0.0.1:5000/api/synthesize \
 
 Two front-ends share **one** audio engine. The DSP lives in `synthesizer.py:Synthesizer` and must not be duplicated in the Flask layer.
 
-- **`synthesizer.py`** — the `Synthesizer` class plus `prompt_*` helpers and a `main()` for the CLI. Importing this module imports `sounddevice` at module load, which requires PortAudio at runtime *only* when `Synthesizer.play()` is actually called. The web app never calls `play()`, so headless servers work fine despite the import.
+- **`synthesizer.py`** — the `Synthesizer` class plus `prompt_*` helpers and a `main()` for the CLI. `sounddevice` (which wraps PortAudio) is imported **lazily inside `play()`** so the module is safe to import on hosts without PortAudio installed — the Flask app and any unit-test-like usage never trigger the import. Do not move it back to module top level: it will break Azure App Service and similar Linux containers.
 - **`app.py`** — Flask wrapper. The only real logic is `_parse_payload()` (JSON validation → `ValueError` → HTTP 400) and `_audio_to_wav_bytes()` (in-memory WAV via `soundfile`). Every successful request constructs a fresh `Synthesizer(timbre=...)`, calls `melody()`, and streams the bytes back as `audio/wav`. There is no persistence or session state.
 - **`templates/index.html` + `static/app.js` + `static/styles.css`** — single-page UI. `app.js` does **no DSP**; it builds a clickable two-octave keyboard (MIDI 60–83), loads preset melodies, POSTs `/api/synthesize`, and wires the response into an `<audio>` element and download link.
 

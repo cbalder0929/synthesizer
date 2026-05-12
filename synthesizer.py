@@ -37,8 +37,13 @@ import os
 import sys
 
 import numpy as np
-import sounddevice as sd
 import soundfile as sf
+
+# Note: `sounddevice` is imported lazily inside Synthesizer.play() so that
+# the rest of the engine (and the Flask web app, which never plays audio
+# server-side) can run on hosts that don't ship PortAudio -- e.g. Azure
+# App Service Linux containers. Installing libportaudio2 there is fiddly
+# and unnecessary for the web use case.
 
 
 # ---------------------------------------------------------------------------
@@ -392,9 +397,22 @@ class Synthesizer:
         Blocks until playback is complete. Catches any sounddevice
         errors (no audio device, busy device, etc.) and reports them
         without crashing the script.
+
+        `sounddevice` is imported here rather than at module top level
+        so that environments without PortAudio (e.g. cloud Linux web
+        hosts) can still import this module and run the web app.
         """
         if audio.size == 0:
             print("Nothing to play: the melody is empty.")
+            return
+
+        try:
+            import sounddevice as sd
+        except (OSError, ImportError) as exc:
+            print(
+                f"Audio playback unavailable on this system: {exc}. "
+                "Save the melody to a WAV file instead."
+            )
             return
 
         print("Playback starting...")

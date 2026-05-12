@@ -2,3 +2,4 @@ flask>=3.0
 numpy>=1.24
 soundfile>=0.12
 sounddevice>=0.4
+gunicorn>=21.2
