@@ -1,0 +1,280 @@
+/* ----------------------------------------------------------------- */
+/* Root / typography                                                  */
+/* ----------------------------------------------------------------- */
+:root {
+  --bg: #0f1115;
+  --panel: #1a1f29;
+  --panel-2: #232a36;
+  --text: #e8ecf3;
+  --muted: #8a93a6;
+  --accent: #7aa7ff;
+  --accent-hover: #9cbcff;
+  --good: #69d18a;
+  --bad: #ff6b6b;
+  --border: #2a3140;
+  --white-key: #f1f3f7;
+  --white-key-hover: #d9def0;
+  --black-key: #1a1f29;
+  --black-key-hover: #3a4458;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+header {
+  padding: 32px 24px 8px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+}
+.subtitle {
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+footer code { color: var(--accent); }
+
+/* ----------------------------------------------------------------- */
+/* Panels                                                             */
+/* ----------------------------------------------------------------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.panel.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+.panel.grid .full { grid-column: 1 / -1; }
+
+label, .label-row {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+textarea, input[type="text"], input[type="number"] {
+  width: 100%;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+}
+textarea:focus, input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.hint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ----------------------------------------------------------------- */
+/* Preset buttons                                                     */
+/* ----------------------------------------------------------------- */
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.presets span { margin-right: 4px; }
+
+.preset, .clear {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.preset:hover { border-color: var(--accent); color: var(--accent); }
+.clear { color: var(--bad); }
+.clear:hover { border-color: var(--bad); }
+
+/* ----------------------------------------------------------------- */
+/* Piano keyboard                                                     */
+/* ----------------------------------------------------------------- */
+.piano {
+  position: relative;
+  display: flex;
+  height: 120px;
+  user-select: none;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  overflow-x: auto;
+}
+.key {
+  position: relative;
+  flex: 1 0 36px;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+}
+.key.white {
+  background: var(--white-key);
+  color: #444;
+  border: 1px solid #aaa;
+  margin-right: 1px;
+}
+.key.white:hover { background: var(--white-key-hover); }
+.key.black {
+  position: absolute;
+  width: 24px;
+  height: 70%;
+  background: var(--black-key);
+  color: var(--muted);
+  border: 1px solid #000;
+  border-radius: 0 0 4px 4px;
+  z-index: 2;
+}
+.key.black:hover { background: var(--black-key-hover); }
+
+/* ----------------------------------------------------------------- */
+/* Timbre selector                                                    */
+/* ----------------------------------------------------------------- */
+.timbre-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.timbre-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: none;
+  color: var(--text);
+  font-weight: 400;
+  margin: 0;
+}
+.timbre-row label:hover { border-color: var(--accent); }
+.timbre-row label:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(122, 167, 255, 0.08);
+}
+.timbre-row strong { font-size: 14px; }
+.timbre-row em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+}
+.timbre-row input { display: none; }
+
+/* ----------------------------------------------------------------- */
+/* Actions / output                                                   */
+/* ----------------------------------------------------------------- */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.primary {
+  background: var(--accent);
+  color: #0c1320;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.primary:hover { background: var(--accent-hover); }
+.primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.status {
+  font-size: 13px;
+  color: var(--muted);
+}
+.status.ok  { color: var(--good); }
+.status.err { color: var(--bad); }
+
+.output {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.output audio { flex: 1; min-width: 240px; }
+.download {
+  background: var(--panel-2);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+}
+.download:hover {
+  background: var(--accent);
+  color: #0c1320;
+}
+
+/* ----------------------------------------------------------------- */
+/* Responsive                                                         */
+/* ----------------------------------------------------------------- */
+@media (max-width: 720px) {
+  .panel.grid { grid-template-columns: 1fr; }
+  .timbre-row { grid-template-columns: 1fr 1fr; }
+}

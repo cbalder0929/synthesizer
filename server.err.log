@@ -1,0 +1,27 @@
+2026-05-12 06:01:10,254 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-05-12 06:01:10,256 INFO [33mPress CTRL+C to quit[0m
+2026-05-12 06:01:33,377 INFO Synthesizing 3 notes at 120.0 BPM, timbre=triangle, custom_durations=False
+2026-05-12 06:01:33,392 INFO 127.0.0.1 - - [12/May/2026 06:01:33] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:01:43,701 INFO 127.0.0.1 - - [12/May/2026 06:01:43] "GET / HTTP/1.1" 200 -
+2026-05-12 06:01:44,138 INFO 127.0.0.1 - - [12/May/2026 06:01:44] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+2026-05-12 06:01:44,140 INFO 127.0.0.1 - - [12/May/2026 06:01:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2026-05-12 06:02:05,004 INFO Synthesizing 15 notes at 110.0 BPM, timbre=triangle, custom_durations=True
+2026-05-12 06:02:05,199 INFO 127.0.0.1 - - [12/May/2026 06:02:05] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:02:05,662 INFO 127.0.0.1 - - [12/May/2026 06:02:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-12 06:02:19,940 INFO 127.0.0.1 - - [12/May/2026 06:02:19] "GET / HTTP/1.1" 200 -
+2026-05-12 06:02:19,997 INFO 127.0.0.1 - - [12/May/2026 06:02:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2026-05-12 06:02:20,006 INFO 127.0.0.1 - - [12/May/2026 06:02:20] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+2026-05-12 06:02:51,506 INFO Synthesizing 8 notes at 110.0 BPM, timbre=triangle, custom_durations=False
+2026-05-12 06:02:51,601 INFO 127.0.0.1 - - [12/May/2026 06:02:51] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:02:51,656 INFO 127.0.0.1 - - [12/May/2026 06:02:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-12 06:03:01,273 INFO Synthesizing 11 notes at 110.0 BPM, timbre=triangle, custom_durations=False
+2026-05-12 06:03:01,398 INFO 127.0.0.1 - - [12/May/2026 06:03:01] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:03:14,069 INFO Synthesizing 15 notes at 110.0 BPM, timbre=sawtooth, custom_durations=True
+2026-05-12 06:03:14,420 INFO 127.0.0.1 - - [12/May/2026 06:03:14] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:03:25,872 INFO Synthesizing 15 notes at 110.0 BPM, timbre=sine, custom_durations=True
+2026-05-12 06:03:25,903 INFO 127.0.0.1 - - [12/May/2026 06:03:25] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:03:35,606 INFO Synthesizing 15 notes at 150.0 BPM, timbre=sine, custom_durations=True
+2026-05-12 06:03:35,630 INFO 127.0.0.1 - - [12/May/2026 06:03:35] "POST /api/synthesize HTTP/1.1" 200 -
+2026-05-12 06:05:17,918 INFO Synthesizing 9 notes at 150.0 BPM, timbre=square, custom_durations=False
+2026-05-12 06:05:17,995 INFO 127.0.0.1 - - [12/May/2026 06:05:17] "POST /api/synthesize HTTP/1.1" 200 -
